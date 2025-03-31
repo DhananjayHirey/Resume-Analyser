@@ -1,3 +1,7 @@
+<?php
+$name = $_SESSION['name']
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

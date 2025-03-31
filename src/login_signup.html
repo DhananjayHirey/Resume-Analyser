@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="output.css">
+</head>
+<body class="bg-zinc-500 flex flex-row items-center justify-center min-h-screen min-w-screen" >
+
+
+
+    <div id="login_signup" class="flex flex-wrap">
+        <div id="signup_info" class="hidden w-80 bg-zinc-900 rounded-2xl flex flex-col p-6 translate-x-3" >
+            <div class="text-xl font-bold text-zinc-100 " >
+                Some Additional <br>Information we need . . .
+            </div>
+            <div class="flex flex-col mt-2 " >
+                <div class="text-sm text-zinc-400 ms-2 z-2 translate-y-2.5 font-bold " ><span class="bg-zinc-900 ps-2 pe-2" >Full Name</span></div>
+                <input id="name" type="text" class="w-full outline-2 outline-zinc-700 rounded-md p-2 text-zinc-200 ps-4 " >
+            </div>
+            <div class="flex flex-col mt-2 " >
+                <div class="text-sm text-zinc-400 ms-2 z-2 translate-y-2.5 font-bold " ><span class="bg-zinc-900 ps-2 pe-2" >Phone No.</span></div>
+                <input id="p_no" type="text" class="w-full outline-2 outline-zinc-700 rounded-md p-2 text-zinc-200 ps-4 " >
+            </div>
+            <div class="flex flex-col mt-2 " >
+                <div class="text-sm text-zinc-400 ms-2 z-2 translate-y-2.5 font-bold " ><span class="bg-zinc-900 ps-2 pe-2" >Reg. No.</span></div>
+                <input id="reg_no" type="text" class="w-full outline-2 outline-zinc-700 rounded-md p-2 text-zinc-200 ps-4 " >
+            </div>
+            <div id="sgn_note1" class="text-zinc-400 text-sm mt-2 hidden" >
+                Note: <span class="text-red-700 text-sm" id="sgn_note2"></span>
+            </div>
+
+        </div>
+        <div
+            class=" bg-slate-100 flex flex-col shadow-2xl border-2 border-slate-600 rounded-xl justify-center z-2">
+            <div class="w-full flex justify-center ">
+                <h1 id="cred_head" class="my-6 font-bold text-zinc-900 text-2xl">Login</h1>
+            </div>
+            <div class="flex justify-center p-4">
+                <div>
+                    <!-- <form id="form"> -->
+                    <div class="">
+                        <div>
+                            <div class="text-sm font-bold" >Email: </div>
+                            <label for="email"></label>
+                            <input class="my-2 py-1 px-2  rounded-md w-64  outline-2 outline-zinc-700" type="email" name="email" id="email">
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <div class="text-sm font-bold text-zinc-900" >Password: </div>
+                            <label for="password"></label>
+                            <input class="my-2 py-1 px-2 rounded-md w-64 outline-2 outline-zinc-700 " type="password" name="password" id="password">
+                        </div>
+                        <div id="note">
+    
+                        </div>
+                    </div>
+                    <div>
+                        <button onclick="Submit()"
+                            class="w-full mt-4 mb-2 rounded-md h-10 bg-zinc-900 text-white text-sm font-bold cursor-pointer shadow-xl shadow-slate-300">Submit</button>
+                    </div>
+    
+                    <!-- </form> -->
+                    <div>
+                        <button id="cred_switch"
+                            class="w-full mb-12 rounded-md h-10 border-2 border-zinc-900 text-zinc-900 text-sm font-bold cursor-pointer shadow-xl shadow-slate-300"
+                            onclick="signup_switch()">Sign-Up </button>
+                    </div>
+                </div>
+            </div>
+    
+        </div>
+    
+    </div>
+    <script>
+        let mode = "login";
+        let user_email = "";
+
+        function signup_switch() {
+            if(mode==="login"){
+                document.getElementById('signup_info').style.display="block";
+            }
+            else{
+                document.getElementById('signup_info').style.display="none";
+            }
+                document.getElementById('cred_head').innerHTML = mode === "login" ? "Signup" : "Login";
+                document.getElementById('cred_switch').innerHTML = mode === "login" ? "Login" : "Sign-Up";
+                mode = mode === "login" ? "signup" : "login";
+        }
+
+        function Submit() {
+
+            if(mode==="login"){
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", `../php/${ mode }.php`, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // Update the DOM with the response from PHP
+                        document.getElementById("note").innerText = xhr.responseText.slice(1);
+                        setTimeout(
+                            ()=>{
+                                if(xhr.responseText[0]=='u'){
+                                    window.location.href= "user_portal.php";
+                                }
+                                else{
+                                    window.location.href= "admin_portal.php";
+                                    
+                                }
+                                
+                            }
+                            ,3000);
+                    } else {
+                        alert("An error occurred: " + xhr.status);
+                    }
+                };
+                
+                const requestData = `email=${ encodeURIComponent(email) }&password=${ encodeURIComponent(password) }`;
+                xhr.send(requestData);
+            }
+            else{
+                document.getElementById("sgn_note2").innerHTML="";
+                document.getElementById("sgn_note1").style.display="none";
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const name = document.getElementById("name").value;
+                const p_no = document.getElementById("p_no").value;
+                const reg_no = document.getElementById("reg_no").value;
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", `../php/${ mode }.php`, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        // Update the DOM with the response from PHP
+                        if(xhr.responseText[0]==='!'){
+                            document.getElementById('sgn_note1').style.display="block";
+                            document.getElementById('sgn_note2').innerHTML=xhr.responseText.slice(1);
+                        }
+                        else{
+                            document.getElementById("note").innerText = xhr.responseText.slice(1);
+
+                        }
+
+                    } else {
+                        alert("An error occurred: " + xhr.status);
+                    }
+                };
+                
+                const requestData = `email=${ encodeURIComponent(email) }&password=${ encodeURIComponent(password) }&reg_number=${encodeURIComponent(reg_no)}&name=${encodeURIComponent(name)}&phn_number=${p_no}`;
+                xhr.send(requestData);
+
+
+            }
+
+
+            }
+    </script>
+</body>
+</html>
