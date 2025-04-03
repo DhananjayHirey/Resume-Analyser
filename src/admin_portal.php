@@ -1,5 +1,7 @@
 <?php
+session_start();
 $name = $_SESSION['name']
+
 ?>
 
 <!DOCTYPE html>
@@ -12,11 +14,11 @@ $name = $_SESSION['name']
 </head>
 <body class="p-4 bg-zinc-300 " >
     <!-- TOPBAR -->
-     <div class="w-full h-60 rounded-2xl bg-zinc-900 bg-[url('../assets/dsh6.png')]  bg-cover bg-bottom mb-4 flex justify-between" >
-         <div>
-             
+     <div class="w-full shadow-xl shadow-zinc-600 h-60 rounded-2xl bg-zinc-900 bg-[url('../assets/dsh6.png')]  bg-cover bg-bottom mb-4 flex justify-center md:justify-between" >
+        <div class="text-zinc-100 flex flex-col item-center md:items-start text-2xl justify-center p-16  " >
+            Hello<br><span class=" font-bold block text-8xl" ><?php echo $_SESSION['name'] ?><span>
         </div>
-        <div class="grid grid-cols-2 grid-rows-2" >
+        <div class=" grid-cols-2 grid-rows-2 hidden md:grid" >
             <div class="p-4 flex flex-row justify-between text-sm font-bold text-zinc-100 m-2 backdrop-blur-md ring-1 ring-zinc-600 w-50 rounded-xl bg-white/15 shadow-lg">
                 <div>Students<br> Registered</div>
                 <div class="flex flex-col items-center gap-0" >
@@ -53,117 +55,117 @@ $name = $_SESSION['name']
      </div>
 
 
-    <!--  SIDEBAR -->
-      <div class="flex justify-between " >
-
-          <div class="flex flex-col w-70 p-4 bg-zinc-100 h-full rounded-2xl mb-2" >
+<div class="flex w-full justify-center flex-wrap md:justify-between  md:flex-nowrap" >
+         
+    <!-- SIDEBAR -->
+        <div class="flex shadow-2xl md:w-70 shadow-zinc-600 flex-col w-full p-4 bg-zinc-100 h-full rounded-2xl mb-2" >
               
-              <div class=" text-sm font-bold ps-2 text-zinc-700" >Main</div>
-              <div value="1" class=" pt-2 pb-2 mt-1 mb-1 flex rounded-lg bg-zinc-100 hover:bg-zinc-100 cursor-pointer hover:shadow-[0_10px_20px_rgba(75,_76,_77,_0.5)] " >
-                  <div class="flex flex-row items-center ps-1" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                <div class=" text-sm font-bold ps-2 text-zinc-700" >Main</div>
+                <div value="1" class=" pt-2 pb-2 mt-1 mb-1 flex rounded-lg bg-zinc-100 hover:bg-zinc-100 cursor-pointer hover:shadow-[0_10px_20px_rgba(75,_76,_77,_0.5)] " >
+                    <div class="flex flex-row items-center ps-1" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                       <path fill-rule="evenodd"
                       d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z"
                       clip-rule="evenodd" />
-                    </svg>
+                        </svg>
+                        <div class="ms-2" >
+                            Dashboard
+                            
+                        </div>
+                    </div>
                 </div>
-                <div class="ms-2" >
-                    Dashboard
-                    
+           
+                <div class=" pt-2 pb-2 mt-1 mb-1 flex rounded-lg bg-zinc-100 hover:bg-zinc-100 cursor-pointer hover:shadow-[0_10px_20px_rgba(75,_76,_77,_0.5)] " >
+                    <div class="flex flex-row items-center ps-1" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+                        <path fill-rule="evenodd"
+                        d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                        clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="ms-2" >
+                        Profile
+                        
+                    </div>
                 </div>
-            </div>
             <div class=" pt-2 pb-2 mt-1 mb-1 flex rounded-lg bg-zinc-100 hover:bg-zinc-100 cursor-pointer hover:shadow-[0_10px_20px_rgba(75,_76,_77,_0.5)] " >
                 <div class="flex flex-row items-center ps-1" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
                     <path fill-rule="evenodd"
-                    d="M18.685 19.097A9.723 9.723 0 0 0 21.75 12c0-5.385-4.365-9.75-9.75-9.75S2.25 6.615 2.25 12a9.723 9.723 0 0 0 3.065 7.097A9.716 9.716 0 0 0 12 21.75a9.716 9.716 0 0 0 6.685-2.653Zm-12.54-1.285A7.486 7.486 0 0 1 12 15a7.486 7.486 0 0 1 5.855 2.812A8.224 8.224 0 0 1 12 20.25a8.224 8.224 0 0 1-5.855-2.438ZM15.75 9a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0Z"
+                    d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z"
                     clip-rule="evenodd" />
-                </svg>
+                    </svg>
+                </div>
+                <div class="ms-2" >
+                    Sign-Out
+                    
+                </div>
             </div>
-            <div class="ms-2" >
-                Profile
-                
+            <div class=" mt-4 font-bold ps-2 text-zinc-600" >Filters</div>
+            <div class="ps-2 flex flex-col" >
+                <div class="mt-2 mb-1 text-zinc-700 font-bold text-sm" >Batch</div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="year1" value="2020-2024" class="w-4 h-4 checked:accent-black" >
+                    <label for="year1" class="text-sm" >2024</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="year2" value="2021-2025" class="w-4 h-4 checked:accent-black" >
+                    <label for="year2" class="text-sm" >2025</label>
+                </div>
+                <div class="flex items-center gap-2">
+                    <input type="checkbox" id="year3" value="2022-2026" class="w-4 h-4 checked:accent-black" >
+                    <label for="year3" class="text-sm" >2026</label>
+                </div>            
             </div>
+            <div class="">
+                <div class=" ps-2 mt-2 mb-1 text-zinc-700 font-bold text-sm" >University</div>
+                    <select name="uni" id="uni" class="w-full rounded-md bg-zinc-200 p-2" >
+                        <option value="" class="">All</option>
+                        <option value="Lovely" class="">Lovely Prof University</option>
+                        <option value="Chandigarh University">Chandigarh University</option>
+                        <option value="Delhi University">Delhi University</option>
+                    </select>
+                    
+            </div>
+                <div class="">
+                    <div class=" ps-2 mt-2 mb-1 text-zinc-700 font-bold text-sm" >Department</div>
+                    <select name="dept" id="dept" class="w-full rounded-md bg-zinc-200 p-2" >
+                        <option value="" class="">All</option>
+                        <option value="Computer" class="">Computer Science</option>
+                        <option value="Pharmacy">Pharmacy</option>
+                        <option value="Music">Music</option>
+                    </select>
+                    
+                </div>
+                <div class="flex flex-col  justify-center items-center mt-4 mb-4" >
+                    <button class="w-full shadow-xl shadow-zinc-600 bg-zinc-800 text-white text-sm font-extrabold p-4 rounded-lg cursor-pointer" onclick="apply_filters()">Apply Filters</button>
+                </div>
         </div>
-        <div class=" pt-2 pb-2 mt-1 mb-1 flex rounded-lg bg-zinc-100 hover:bg-zinc-100 cursor-pointer hover:shadow-[0_10px_20px_rgba(75,_76,_77,_0.5)] " >
-            <div class="flex flex-row items-center ps-1" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
-                <path fill-rule="evenodd"
-                d="M16.5 3.75a1.5 1.5 0 0 1 1.5 1.5v13.5a1.5 1.5 0 0 1-1.5 1.5h-6a1.5 1.5 0 0 1-1.5-1.5V15a.75.75 0 0 0-1.5 0v3.75a3 3 0 0 0 3 3h6a3 3 0 0 0 3-3V5.25a3 3 0 0 0-3-3h-6a3 3 0 0 0-3 3V9A.75.75 0 1 0 9 9V5.25a1.5 1.5 0 0 1 1.5-1.5h6ZM5.78 8.47a.75.75 0 0 0-1.06 0l-3 3a.75.75 0 0 0 0 1.06l3 3a.75.75 0 0 0 1.06-1.06l-1.72-1.72H15a.75.75 0 0 0 0-1.5H4.06l1.72-1.72a.75.75 0 0 0 0-1.06Z"
-                clip-rule="evenodd" />
-            </svg>
-        </div>
-        <div class="ms-2" >
-            Sign-Out
-            
-        </div>
-    </div>
-    <div class=" mt-4 font-bold ps-2 text-zinc-600" >Filters</div>
-    <div class="ps-2 flex flex-col" >
-        <div class="mt-2 mb-1 text-zinc-700 font-bold text-sm" >Batch</div>
-        <div class="flex items-center gap-2">
-            <input type="checkbox" id="year1" value="2020-2024" class="w-4 h-4 checked:accent-black" >
-            <label for="year1" class="text-sm" >2024</label>
-        </div>
-        <div class="flex items-center gap-2">
-            <input type="checkbox" id="year2" value="2021-2025" class="w-4 h-4 checked:accent-black" >
-            <label for="year2" class="text-sm" >2025</label>
-        </div>
-        <div class="flex items-center gap-2">
-            <input type="checkbox" id="year3" value="2022-2026" class="w-4 h-4 checked:accent-black" >
-            <label for="year3" class="text-sm" >2026</label>
-        </div>            
-    </div>
-    <div class="">
-        <div class=" ps-2 mt-2 mb-1 text-zinc-700 font-bold text-sm" >University</div>
-            <select name="uni" id="uni" class="w-full rounded-md bg-zinc-200 p-2" >
-                <option value="" class="">All</option>
-                <option value="Lovely" class="">Lovely Prof University</option>
-                <option value="Chandigarh University">Chandigarh University</option>
-                <option value="Delhi University">Delhi University</option>
-            </select>
-            
-        </div>
-        <div class="">
-            <div class=" ps-2 mt-2 mb-1 text-zinc-700 font-bold text-sm" >Department</div>
-            <select name="dept" id="dept" class="w-full rounded-md bg-zinc-200 p-2" >
-                <option value="" class="">All</option>
-                <option value="Computer" class="">Computer Science</option>
-                <option value="Pharmacy">Pharmacy</option>
-                <option value="Music">Music</option>
-            </select>
-            
-        </div>
-        <div class="flex flex-col justify-center items-center mt-4 mb-4" >
-            <button class="w-full bg-zinc-800 text-white text-sm font-extrabold p-4 rounded-lg cursor-pointer" onclick="apply_filters()">Apply Filters</button>
-        </div>
-        
-    </div>
 
     <!-- Image rendering -->
      <!-- <div class="flex" > -->
         <!-- <input type="text" class="w-full bg-amber-200 h-12 outline-2 outline-zinc-800" > -->
-        <div class="w-full bg-zinc-100 m-4 rounded-2xl flex flex-col p-4" >
+        <div class="w-full shadow-2xl shadow-zinc-600 bg-zinc-100 m-4 rounded-2xl flex flex-col p-4" >
             <img id="image" src="" alt="">  
         </div>
     <!-- </div> -->
 
     <!-- LISTING THE DOCUMENTS -->
-     <div class="flex flex-col" >
-        <div class="w-full h-12 mb-4 bg-zinc-100 rounded-3xl flex" >
-            <input type="text" class="w-full bg-zinc-100 rounded-3xl ps-4 p-2 focus:outline-0 " >
+    <div class="flex flex-col w-full md:w-80" >
+        <div class="w-full h-12 mb-4 bg-zinc-100 rounded-3xl flex shadow-2xl shadow-zinc-600 " >
+            <input type="text" class="w-full bg-zinc-100 rounded-3xl ps-4 p-2 focus:outline-0 " placeholder="Search for...">
             <button class="cursor-pointer" ><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-8 m-2">
                 <path d="M8.25 10.875a2.625 2.625 0 1 1 5.25 0 2.625 2.625 0 0 1-5.25 0Z" />
                 <path fill-rule="evenodd"
                     d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-1.125 4.5a4.125 4.125 0 1 0 2.338 7.524l2.007 2.006a.75.75 0 1 0 1.06-1.06l-2.006-2.007a4.125 4.125 0 0 0-3.399-6.463Z"
                     clip-rule="evenodd" />
-            </svg>
-</button>
+                </svg>
+            </button>
         </div>
-         <div class="flex flex-col w-70 rounded-xl h-100 overflow-y-scroll bg-zinc-100" >
-             <div class="flex flex-col" id="docs" >
+         <div class="flex flex-col w-full shadow-2xl shaodw-zinc-600 w-70 rounded-xl h-100 bg-zinc-100 overflow-hidden" >
+             <div class="flex flex-col  overflow-y-scroll " id="docs" >
      
              </div>
          </div>
 
-     </div>
+    </div>
 </div>
     
     <script>

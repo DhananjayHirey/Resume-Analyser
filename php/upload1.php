@@ -1,11 +1,10 @@
 <?php
-session_start();
-$target_dir = "uploads/";
-$target_file = $target_dir . basename($_FILES["file"]["name"]);
-$id = $_SESSION['id'];
+$dir = "uploads/";
+$file = $dir . basename($_FILES["file"]["name"]);
+
 
 $uploadOk = 1;
-$imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
+$imageFileType = strtolower(pathinfo($file,PATHINFO_EXTENSION));
 
 
 if(isset($_POST["submit"])) {
@@ -20,7 +19,7 @@ if(isset($_POST["submit"])) {
 }
 
 
-if (file_exists($target_file)) {
+if (file_exists($file)) {
   echo "<script>alert('Sorry, file already exists.')</script>";
   $uploadOk = 0;
 }
@@ -43,31 +42,12 @@ if ($uploadOk == 0) {
   echo "<script>alert('Sorry, your file was not uploaded.')</script>";
 
 } else {
-  if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
+  if (move_uploaded_file($_FILES["file"]["tmp_name"], $file)) {
     echo "<script>alert('The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.')</script>";
   } else {
     echo "<script>alert('Sorry, there was an error uploading your file.')</script>";
   }
 }
 
-require 'vendor/autoload.php';
-use thiagoalessio\TesseractOCR\TesseractOCR;
 
-$text =  (new TesseractOCR($target_file))
-->run();
-
-
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$database = "resume";
-
-$conn = mysqli_connect($servername,$username,$password,$database);
-$sql = "UPDATE `info` SET `file_ref` = '$target_file' WHERE `info`.`id` = $id;";
-$result = mysqli_query($conn,$sql);
-$sql = "UPDATE `info` SET `file_text` = '$text' WHERE `info`.`id` = $id;";
-$result = mysqli_query($conn,$sql);
-
-$_SESSION['file_ref']=$target_file;
 ?>
