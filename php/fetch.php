@@ -3,29 +3,36 @@
 
 if($_SERVER['REQUEST_METHOD']=='POST'){
 
-    $year1 = $_POST['year1'];
-    $year2 = $_POST['year2'];
-    $year3 = $_POST['year3'];
-    $uni = $_POST['uni'];
-    $dept = $_POST['dept'];
+        $other_fac = $_POST['man_inp'];
+        $other_fac_arr = explode(" ",$other_fac,-1);
+        $year1 = $_POST['year1'];
+        $year2 = $_POST['year2'];
+        $year3 = $_POST['year3'];
+        $uni = $_POST['uni'];
+        $dept = $_POST['dept'];
 
-    $keys = [];
-
-    if(strlen($year1)>0){
-        array_push($keys,$year1);
-    }
-    if(strlen($year2)>0){
-        array_push($keys,$year2);
-    }
-    if(strlen($year3)>0){
-        array_push($keys,$year3);
-    }
-    if(strlen($uni)>0){
-        array_push($keys,$uni);
-    }
-    if(strlen($dept)>0){
-        array_push($keys,$dept);
-    }
+        $keys = [];
+        if(sizeof($other_fac_arr)>0){
+            $keys = array_merge($keys,$other_fac_arr);
+        }
+        
+        if(strlen($year1)>0){
+            array_push($keys,$year1);
+        }
+        if(strlen($year2)>0){
+            array_push($keys,$year2);
+        }
+        if(strlen($year3)>0){
+            array_push($keys,$year3);
+        }
+        if(strlen($uni)>0){
+            array_push($keys,$uni);
+        }
+        if(strlen($dept)>0){
+            array_push($keys,$dept);
+        }
+        
+        // var_dump($other_fac_arr);
 
     $servername = "localhost";
     $username = "root";

@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DocMatch</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+        }
+
+        /* Navbar Styles */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem 1.5rem;
+            background-color: black;
+            color: white;
+            z-index: 50;
+            transition: all 0.3s;
+        }
+
+        .nav-content {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        /* Main Container */
+        .main-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            padding-top: 4rem;
+        }
+
+        @media (min-width: 1024px) {
+            .main-container {
+                flex-direction: row;
+            }
+        }
+
+        /* Carousel Section */
+        .carousel-section {
+            display: none;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        @media (min-width: 1024px) {
+            .carousel-section {
+                display: block;
+                width: 50%;
+            }
+        }
+
+        .carousel {
+            display: flex;
+            width: 500%;
+            /* 5 images × 100% */
+            animation: scroll 15s linear infinite;
+        }
+
+        .carousel img {
+            width: 20%;
+            /* 100% ÷ 5 images */
+            height: 100vh;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        @keyframes scroll {
+            0% {
+                transform: translateX(0);
+            }
+
+            16% {
+                transform: translateX(0);
+            }
+
+            20% {
+                transform: translateX(-20%);
+            }
+
+            36% {
+                transform: translateX(-20%);
+            }
+
+            40% {
+                transform: translateX(-40%);
+            }
+
+            56% {
+                transform: translateX(-40%);
+            }
+
+            60% {
+                transform: translateX(-60%);
+            }
+
+            76% {
+                transform: translateX(-60%);
+            }
+
+            80% {
+                transform: translateX(-80%);
+            }
+
+            96% {
+                transform: translateX(-80%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
+        /* Form Section */
+        .form-section {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .form-section {
+                padding: 2rem;
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .form-section {
+                width: 50%;
+            }
+        }
+
+        #form-container {
+            width: 100%;
+            max-width: 48rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            #form-container {
+                flex-direction: row;
+            }
+        }
+
+        /* Login Form */
+        #login-info {
+            width: 100%;
+            transition: all 0.3s;
+            background-color: white;
+            border: 2px solid #71717a;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            #login-info {
+                width: 50%;
+            }
+        }
+
+        #login-info.expanded {
+            width: 100%;
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        #cred-head {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #18181b;
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: bold;
+            color: #18181b;
+            margin-bottom: 0.25rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 0.5rem 0.75rem;
+            border-radius: 0.375rem;
+            border: 2px solid #3f3f46;
+            transition: border-color 0.2s;
+        }
+
+        .form-input:focus {
+            border-color: #b91c1c;
+            outline: none;
+        }
+
+        #note {
+            color: #dc2626;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        .btn {
+            width: 100%;
+            border-radius: 0.375rem;
+            padding: 0.625rem;
+            font-size: 0.875rem;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.2s;
+        }
+
+        .btn-submit {
+            margin-top: 1rem;
+            margin-bottom: 0.75rem;
+            background-color: #18181b;
+            color: white;
+        }
+
+        .btn-submit:hover {
+            background-color: #3f3f46;
+        }
+
+        .btn-switch {
+            margin-bottom: 1rem;
+            border: 2px solid #18181b;
+            color: #18181b;
+            background-color: transparent;
+        }
+
+        .btn-switch:hover {
+            background-color: #e5e5e5;
+        }
+
+        /* Signup Info */
+        #signup-info {
+            width: 100%;
+            background-color: #18181b;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            #signup-info {
+                width: 50%;
+            }
+        }
+
+        .signup-title {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #f4f4f5;
+            margin-bottom: 1rem;
+        }
+
+        .floating-label {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .floating-label span {
+            position: absolute;
+            left: 10px;
+            top: -10px;
+            z-index: 10;
+            padding: 0 5px;
+            font-size: 0.875rem;
+            color: #a1a1aa;
+            font-weight: bold;
+            background-color: #18181b;
+        }
+
+        .dark-input {
+            width: 100%;
+            padding: 0.5rem 1rem;
+            border-radius: 0.375rem;
+            background-color: #18181b;
+            border: 2px solid #3f3f46;
+            color: #f4f4f5;
+            margin-top: 0.125rem;
+        }
+
+        .dark-input:focus {
+            border-color: white;
+            outline: none;
+        }
+
+        #sgn-note {
+            color: #a1a1aa;
+            font-size: 0.875rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        #sgn-note-text {
+            color: #dc2626;
+        }
+
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav>
+        <div class="nav-content">
+            <!-- Logo -->
+            <div><a href="landingpage.html" class="logo">DocMatch</a></div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="main-container">
+        <!-- Carousel Section - hidden on small screens, visible on lg+ -->
+        <div class="carousel-section">
+            <div class="carousel">
+                <img src="https://i.pinimg.com/736x/a4/8f/02/a48f023600498d8c65d29a010e0875c9.jpg" alt="Image 1">
+                <img src="https://i.ibb.co/RXGWBdN/10259343-4356046.jpg" alt="Image 2">
+                <img src="https://images.unsplash.com/photo-1661956602153-23384936a1d3" alt="Image 3">
+                <img src="https://i.pinimg.com/474x/3e/02/33/3e02335ec0676b1321ee742a27896e89.jpg" alt="Image 4">
+                <img src="https://i.pinimg.com/474x/64/81/86/648186bdb7490db17432bcef5b2fa048.jpg" alt="Image 5">
+            </div>
+        </div>
+
+        <!-- Form Section -->
+        <div class="form-section">
+            <div id="form-container">
+                <!-- Login Form - Left side -->
+                <div id="login-info">
+                    <h2 id="cred-head">Signup</h2>
+
+                    <div class="form-group">
+                        <label for="email" class="form-label">Email:</label>
+                        <input id="email" type="email" class="form-input">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password:</label>
+                        <input id="password" type="password" class="form-input">
+                    </div>
+
+                    <div id="note"></div>
+
+                    <button onclick="submit()" class="btn btn-submit">Submit</button>
+
+                    <button id="cred-switch" onclick="switchMode()" class="btn btn-switch">Login</button>
+                </div>
+
+                <!-- Additional Signup Info - Right side -->
+                <div id="signup-info">
+                    <h3 class="signup-title">Additional Information</h3>
+
+                    <div class="floating-label">
+                        <span>Full Name</span>
+                        <input id="name" type="text" class="dark-input" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="floating-label">
+                        <span>Phone No.</span>
+                        <input id="p-no" type="text" class="dark-input" placeholder="Enter your phone number">
+                    </div>
+
+                    <div class="floating-label">
+                        <span>Reg. No.</span>
+                        <input id="reg-no" type="text" class="dark-input" placeholder="Enter your registration number">
+                    </div>
+
+                    <div id="sgn-note">
+                        Note: <span id="sgn-note-text"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let mode = "signup";
+
+        // Function to toggle between login and signup modes
+        function switchMode() {
+            const loginForm = document.getElementById('login-info');
+            const signupInfo = document.getElementById('signup-info');
+            const credHead = document.getElementById('cred-head');
+            const credSwitch = document.getElementById('cred-switch');
+            const note = document.getElementById('note');
+
+            if (mode === "signup") {
+                mode = "login";
+                credHead.innerText = "Login";
+                credSwitch.innerText = "Signup";
+
+                signupInfo.classList.add('hidden');
+
+                // On desktop/tablet, expand login form to full width
+                if (window.innerWidth >= 768) {
+                    loginForm.classList.add('expanded');
+                }
+            } else {
+                mode = "signup";
+                credHead.innerText = "Signup";
+                credSwitch.innerText = "Login";
+
+                signupInfo.classList.remove('hidden');
+
+                // Restore original width
+                loginForm.classList.remove('expanded');
+            }
+
+            // Clear any messages
+            note.innerText = "";
+            note.classList.add('hidden');
+
+            const sgnNote = document.getElementById('sgn-note');
+            if (sgnNote) {
+                sgnNote.classList.add('hidden');
+            }
+        }
+
+        function submit() {
+            const note = document.getElementById("note");
+            note.classList.remove('hidden');
+            note.style.display = "block";
+
+            if (mode === "login") {
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+
+                // Simulate AJAX call for demo purposes
+                note.innerText = "Login successful! Redirecting...";
+                console.log("Login attempt with:", email, password);
+
+                // In a real app, you would use AJAX like this:
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", `../php/${mode}.php`, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        note.innerText = xhr.responseText.slice(1);
+                        setTimeout(() => {
+                            if (xhr.responseText[0] == 'u') {
+                                window.location.href = "user_portal.php";
+                            } else {
+                                window.location.href = "admin_portal.php";
+                            }
+                        }, 3000);
+                    } else {
+                        alert("An error occurred: " + xhr.status);
+                    }
+                };
+                
+                const requestData = `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}`;
+                xhr.send(requestData);
+                
+            } else {
+                const sgnNote = document.getElementById("sgn-note");
+                const sgnNoteText = document.getElementById("sgn-note-text");
+
+                sgnNoteText.innerHTML = "";
+                sgnNote.style.display = "none";
+
+                const email = document.getElementById("email").value;
+                const password = document.getElementById("password").value;
+                const name = document.getElementById("name").value;
+                const pNo = document.getElementById("p-no").value;
+                const regNo = document.getElementById("reg-no").value;
+
+                // Simulate AJAX call for demo purposes
+                note.innerText = "Signup successful! Please check your email.";
+                console.log("Signup attempt with:", email, password, name, pNo, regNo);
+
+                // In a real app, you would use AJAX like this:
+                
+                const xhr = new XMLHttpRequest();
+                xhr.open("POST", `../php/${mode}.php`, true);
+                xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+                xhr.onload = function () {
+                    if (xhr.status === 200) {
+                        if (xhr.responseText[0] === '!') {
+                            sgnNote.style.display = "block";
+                            sgnNoteText.innerHTML = xhr.responseText.slice(1);
+                        } else {
+                            note.innerText = xhr.responseText.slice(1);
+                        }
+                    } else {
+                        alert("An error occurred: " + xhr.status);
+                    }
+                };
+                
+                const requestData = `email=${encodeURIComponent(email)}&password=${encodeURIComponent(password)}&reg_number=${encodeURIComponent(regNo)}&name=${encodeURIComponent(name)}&phn_number=${pNo}`;
+                xhr.send(requestData);
+                
+            }
+        }
+
+        // Initialize the UI based on the default mode
+        window.onload = function () {
+            // Set initial state
+            if (mode === "login") {
+                document.getElementById('signup-info').classList.add('hidden');
+                document.getElementById('cred-head').innerText = "Login";
+                document.getElementById('cred-switch').innerText = "Signup";
+
+                // Expand login form if on desktop
+                if (window.innerWidth >= 768) {
+                    document.getElementById('login-info').classList.add('expanded');
+                }
+            }
+        };
+    </script>
+</body>
+
+</html>

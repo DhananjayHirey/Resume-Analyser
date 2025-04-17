@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DocMatch - Document Matching Solution</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="./output.css">
+
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .bg-image {
+      background-image: url("https://media-hosting.imagekit.io/6e6ba493e56e484e/mountains-1412683_1920.png?Expires=1838538352&Key-Pair-Id=K2ZIVPTIP2VGHC&Signature=GfyGfKAutDywQkBQtSeJolCph7IUncO9ahijGv747XGzNecE0gWK1b2bqSMe356DXB5p62OOdbu2IEwRrt01SePeFabHvpSsYpM7MbbTVg7DQees6thO7QKxOVXPWiPSKlKul85TxMQXYOPdxfbGtjYQPYBtKupr0fqlotlt6qiONG3jNbcdtsMr3xNIAnn1s86nDRi3IlfTe8rrxdvpJYAfEcQHOOLqphxwpJ1bnXG9ohHSZZlH6QxAVk2fRF3uEW8YRPoc6jfFqu1AdNPMuhoMuSIfhtoSP7NQdKChRRqzj~PyXmAyFu7HRBpX3Wcp9~xthekadlIHAyIx3cnhRA__");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      position: relative;
+    }
+
+    .bg-image::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(76, 0, 130, 0.8), rgba(128, 0, 128, 0.9));
+    }
+
+    .bg-purple-gradient {
+      background: linear-gradient(135deg, #4c0082 0%, #800080 100%);
+    }
+
+    .bg-darker-purple {
+      background-color: #2a0033;
+    }
+
+    .text-shadow {
+      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-bg {
+      background-color: rgba(30, 0, 40, 0.7);
+      backdrop-filter: blur(5px);
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased text-gray-100 bg-purple-900">
+  <!-- Navigation - Fixed at top -->
+  <nav id="navbar" class="fixed top-0 left-0 w-full px-6 py-4 transition-all duration-300 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <div class="flex items-center">
+
+        <div class="text-white text-2xl font-bold">DocMatch</div>
+      </div>
+
+      <!-- Navigation Links -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="text-white hover:text-pink-300 transition duration-300 font-medium">Home</a>
+        <a href="#about" class="text-white hover:text-pink-300 transition duration-300 font-medium">About Us</a>
+        <a href="#contact" class="text-white hover:text-pink-300 transition duration-300 font-medium">Contact</a>
+        <!-- /*<a href="#" class="text-white hover:text-pink-300 transition duration-300 font-medium">Sign In</a> -->
+        <!-- <a href="#" -->
+        <!-- class="bg-pink-500 hover:bg-pink-400 text-gray-900 px-4 py-2 rounded-lg transition duration-300 font-medium">Sign -->
+        <!-- Up</a> -->
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <div class="md:hidden">
+        <button id="menu-toggle" class="text-white focus:outline-none">
+          <i class="fas fa-bars text-2xl"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden bg-purple-900 bg-opacity-95 mt-4 p-4 rounded-lg">
+      <a href="#home" class="block text-white hover:text-pink-300 py-2">Home</a>
+      <a href="#about" class="block text-white hover:text-pink-300 py-2">About Us</a>
+      <a href="#contact" class="block text-white hover:text-pink-300 py-2">Contact</a>
+      <a href="#" class="block text-white hover:text-pink-300 py-2">Sign In</a>
+      <a href="#" class="block bg-pink-500 hover:bg-pink-400 text-gray-900 px-4 py-2 rounded-lg mt-2 text-center">Sign
+        Up</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen bg-image flex items-center relative">
+    <div class="container mx-auto px-6 relative z-10 pt-20">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 leading-tight text-shadow">
+          WELCOME
+        </h1>
+        <h2 class="text-3xl md:text-4xl font-medium text-pink-200 mb-6 leading-tight text-shadow">
+          to DocMatch
+        </h2>
+        <div class="w-32 h-1 bg-white mx-auto mb-8"></div>
+        <p class="text-xl md:text-2xl text-gray-100 mb-10 text-shadow">
+          Transform your workflow with our powerful document template matching system.
+        </p>
+        <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+          <a href="./test-1.html" onclick="()=>{window.location.href='./test-1.html'}"
+            class="transform hover:-translate-y-1 transition-all duration-300 bg-pink-500 hover:bg-pink-400 text-gray-900 px-8 py-3 rounded-full text-lg font-semibold">
+            JOIN US NOW
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Wave Overlay Bottom -->
+    <div class="absolute bottom-0 left-0 w-full h-32 wave-bg"></div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-purple-900">
+    <div class="container mx-auto px-6">
+      <!-- About Intro -->
+      <div class="max-w-4xl mx-auto mb-16 text-center">
+        <h2 class="text-4xl font-bold mb-6 text-white">About Us</h2>
+        <p class="text-xl text-pink-100">
+          We simplify document matching with cutting-edge algorithms, optimizing workflow across legal, academic, and
+          business fields.
+        </p>
+      </div>
+
+      <!-- Core Values -->
+      <div class="mb-20">
+        <h3 class="text-3xl font-bold mb-10 text-center text-white">Our Core Values</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Value 1 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Punctuality</h4>
+            <p class="text-gray-300">Timely execution with high efficiency.</p>
+          </div>
+
+          <!-- Value 2 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-star"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Quality</h4>
+            <p class="text-gray-300">Precision-driven results every time.</p>
+          </div>
+
+          <!-- Value 3 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-shield-alt"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Safety</h4>
+            <p class="text-gray-300">Uncompromised data security.</p>
+          </div>
+
+          <!-- Value 4 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Transparency</h4>
+            <p class="text-gray-300">Clear policies with no hidden costs.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Team Section -->
+      <div class="mb-20">
+        <h3 class="text-3xl font-bold mb-10 text-center text-white">Meet Our Team</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Team Member 1 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-purple-700 flex items-center justify-center">
+              <i class="fas fa-user text-4xl text-pink-200"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-1 text-pink-200">Raj</h4>
+            <p class="text-gray-300">Head of Customer Support</p>
+          </div>
+
+          <!-- Team Member 2 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-purple-700 flex items-center justify-center">
+              <i class="fas fa-user text-4xl text-pink-200"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-1 text-pink-200">Ronald Joseph</h4>
+            <p class="text-gray-300">Customer Support Manager</p>
+          </div>
+
+          <!-- Team Member 3 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-purple-700 flex items-center justify-center">
+              <i class="fas fa-user text-4xl text-pink-200"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-1 text-pink-200">Dhananjay</h4>
+            <p class="text-gray-300">Quality Assurance Manager</p>
+          </div>
+
+          <!-- Team Member 4 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="w-24 h-24 mx-auto mb-4 rounded-full bg-purple-700 flex items-center justify-center">
+              <i class="fas fa-user text-4xl text-pink-200"></i>
+            </div>
+            <h4 class="text-xl font-bold mb-1 text-pink-200">Neha Singh</h4>
+            <p class="text-gray-300">Dispute Resolution Manager</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Achievement Stats -->
+      <div>
+        <h3 class="text-3xl font-bold mb-10 text-center text-white">Our Achievements</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Stat 1 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-users"></i>
+            </div>
+            <h4 class="text-3xl font-bold mb-2 text-pink-200">1,000+</h4>
+            <p class="text-gray-300">Users Benefited</p>
+          </div>
+
+          <!-- Stat 2 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-file-alt"></i>
+            </div>
+            <h4 class="text-3xl font-bold mb-2 text-pink-200">5,000+</h4>
+            <p class="text-gray-300">Documents Processed</p>
+          </div>
+
+          <!-- Stat 3 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-clock"></i>
+            </div>
+            <h4 class="text-3xl font-bold mb-2 text-pink-200">70%</h4>
+            <p class="text-gray-300">Time Saved</p>
+          </div>
+
+          <!-- Stat 4 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <div class="text-pink-400 text-4xl mb-4">
+              <i class="fas fa-bolt"></i>
+            </div>
+            <h4 class="text-3xl font-bold mb-2 text-pink-200">95%</h4>
+            <p class="text-gray-300">Efficiency Boost</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-purple-800">
+    <div class="container mx-auto px-6">
+      <h2 class="text-4xl font-bold mb-12 text-center text-white">Contact Us</h2>
+
+
+
+      <!-- Contact Form -->
+      <div class="max-w-3xl mx-auto card-bg rounded-xl p-8 shadow-lg border border-purple-700">
+        <h3 class="text-2xl font-bold mb-6 text-center text-pink-200">Get in Touch</h3>
+
+        <!-- Success/Error message div (initially hidden) -->
+        <div id="success-message"
+          class="mb-6 bg-green-500 text-white p-3 font-bold rounded-lg text-center hidden">
+          Message sent successfully! We'll get back to you shortly.
+        </div>
+        <div id="error-message" class="mb-6 bg-red-500 text-white p-3 font-bold rounded-lg text-center hidden">
+          Failed to send message. Please try again or email us directly at docmatchspprt@gmail.com.
+        </div>
+
+        <form method="POST" action="../php/process_form.php">
+          <div class="mb-6">
+            <input type="text" name="name" placeholder="Your Name" required
+              class="w-full p-3 bg-purple-900 bg-opacity-60 rounded-lg border border-purple-600 focus:border-pink-400 focus:outline-none text-white">
+          </div>
+          <div class="mb-6">
+            <input type="email" name="email" placeholder="Your Email" required
+              class="w-full p-3 bg-purple-900 bg-opacity-60 rounded-lg border border-purple-600 focus:border-pink-400 focus:outline-none text-white">
+          </div>
+          <div class="mb-6">
+            <textarea name="message" rows="5" placeholder="Your Message" required
+              class="w-full p-3 bg-purple-900 bg-opacity-60 rounded-lg border border-purple-600 focus:border-pink-400 focus:outline-none text-white"></textarea>
+          </div>
+          <div class="text-center">
+            <button type="submit"
+              class="bg-pink-500 hover:bg-pink-400 text-white px-6 py-3 rounded-full font-semibold transform hover:-translate-y-1 transition-all duration-300">
+              Send Message
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- User Feedback Section -->
+      <div class="mt-20">
+        <h3 class="text-3xl font-bold mb-10 text-center text-white">User Feedback</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <!-- Feedback 1 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Anshika</h4>
+            <div class="text-pink-400 text-xl mb-3">⭐⭐⭐⭐⭐</div>
+            <p class="text-gray-300">Great tool! Helped me find matching documents quickly.</p>
+          </div>
+
+          <!-- Feedback 2 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Quack</h4>
+            <div class="text-pink-400 text-xl mb-3">⭐⭐⭐⭐⭐</div>
+            <p class="text-gray-300">Very accurate document matching, saved me a lot of time!</p>
+          </div>
+
+          <!-- Feedback 3 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Duck J.</h4>
+            <div class="text-pink-400 text-xl mb-3">⭐⭐⭐⭐⭐</div>
+            <p class="text-gray-300">Love the clean interface and efficiency of this platform.</p>
+          </div>
+
+          <!-- Feedback 4 -->
+          <div
+            class="card-bg p-6 rounded-xl shadow-lg transform hover:-translate-y-2 transition-all duration-300 text-center border border-purple-700">
+            <h4 class="text-xl font-bold mb-2 text-pink-200">Joe. fiu</h4>
+            <div class="text-pink-400 text-xl mb-3">⭐⭐⭐⭐⭐</div>
+            <p class="text-gray-300">The platform is incredibly efficient with a sleek, user-friendly interface.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-purple-950 text-white py-12">
+    <div class="container mx-auto px-6">
+      <!-- Footer Content -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Brand Info -->
+        <div>
+          <div class="flex items-center mb-4">
+            <div class="text-2xl font-bold text-white">DocMatch</div>
+          </div>
+          <p class="text-gray-400 mb-4">
+            Transform your document workflow with our advanced matching solutions for legal, academic, and business
+            needs.
+          </p>
+          <div class="flex space-x-4">
+            <a href="#" class="text-gray-400 hover:text-pink-400 text-xl transition-colors duration-300"
+              aria-label="Facebook">
+              <i class="fab fa-facebook"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-400 text-xl transition-colors duration-300"
+              aria-label="Twitter">
+              <i class="fab fa-twitter"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-400 text-xl transition-colors duration-300"
+              aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="text-gray-400 hover:text-pink-400 text-xl transition-colors duration-300"
+              aria-label="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Quick Links -->
+        <div>
+          <h4 class="text-xl font-semibold text-pink-200 mb-4">Quick Links</h4>
+          <ul class="space-y-2">
+            <li>
+              <a href="#home" class="text-gray-400 hover:text-pink-400 transition-colors duration-300">Home</a>
+            </li>
+            <li>
+              <a href="#about" class="text-gray-400 hover:text-pink-400 transition-colors duration-300">About Us</a>
+            </li>
+            <li>
+              <a href="#contact" class="text-gray-400 hover:text-pink-400 transition-colors duration-300">Contact</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-pink-400 transition-colors duration-300">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#" class="text-gray-400 hover:text-pink-400 transition-colors duration-300">Terms of Service</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact Info -->
+        <div>
+          <h4 class="text-xl font-semibold text-pink-200 mb-4">Contact Info</h4>
+          <ul class="space-y-2 text-gray-400">
+            <li>
+              <i class="fas fa-envelope mr-2"></i>
+              <a href="mailto:support@docmatch.com"
+                class="hover:text-pink-400 transition-colors duration-300">docMatch@gmail.com</a>
+            </li>
+            <li>
+              <i class="fas fa-phone mr-2"></i>
+              <a href="tel:+1234567890" class="hover:text-pink-400 transition-colors duration-300">+1 (234) 567-890</a>
+            </li>
+
+          </ul>
+        </div>
+      </div>
+
+      <!-- Footer Bottom -->
+      <div class="border-t border-purple-800 mt-8 pt-8 text-center text-gray-400">
+        <p>© 2025 DocMatch. All rights reserved.</p>
+        <p class="mt-2">
+          Designed with <i class="fas fa-heart text-pink-400"></i> by the DocMatch Team
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Interaction -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const status = urlParams.get('status');
+
+      if (status === 'success') {
+        document.getElementById('success-message').classList.remove('hidden');
+      } else if (status === 'error') {
+        document.getElementById('error-message').classList.remove('hidden');
+      }
+    });
+
+    // Mobile menu toggle
+    document.getElementById('menu-toggle').addEventListener('click', function () {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+
+    // Navbar background change on scroll
+    window.addEventListener('scroll', function () {
+      const navbar = document.getElementById('navbar');
+      // New code
+      if (window.scrollY > 50) {
+        navbar.classList.add('bg-black');
+        navbar.classList.add('bg-opacity-90');
+      } else {
+        navbar.classList.remove('bg-black');
+        navbar.classList.remove('bg-opacity-90');
+      }
+    });
+  </script>
+</body>
+
+</html>

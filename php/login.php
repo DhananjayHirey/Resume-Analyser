@@ -1,4 +1,6 @@
 <?php
+// session_destroy();
+session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = trim($_POST['email']);
     $pass = $_POST['password'];
@@ -52,7 +54,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($row = $result->fetch_assoc()) {
         if (password_verify($pass,$row['password'])) { 
             if (preg_match('/@smartmatch\\.com/i', $email)) {
-                session_start();
                 $_SESSION['name']=$row['full_name'];
                 $_SESSION['file_ref']=$row['file_ref'];
                 $_SESSION['id']=$row['id'];
@@ -61,7 +62,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['email']=$row['email'];
                 echo "aLogging in...";
             } else {
-                session_start();
                 $_SESSION['name']=$row['full_name'];
                 $_SESSION['file_ref']=$row['file_ref'];
                 $_SESSION['id']=$row['id'];
