@@ -4,12 +4,16 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc0cb2b6fa1e6d04e355fec91e2fda292
+class ComposerStaticInit9288648fe87ea2bac0d2c26a678d31fb
 {
     public static $prefixLengthsPsr4 = array (
         't' => 
         array (
             'thiagoalessio\\TesseractOCR\\' => 27,
+        ),
+        'R' => 
+        array (
+            'Robin\\Php\\' => 10,
         ),
         'P' => 
         array (
@@ -21,6 +25,10 @@ class ComposerStaticInitc0cb2b6fa1e6d04e355fec91e2fda292
         'thiagoalessio\\TesseractOCR\\' => 
         array (
             0 => __DIR__ . '/..' . '/thiagoalessio/tesseract_ocr/src',
+        ),
+        'Robin\\Php\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/src',
         ),
         'PHPMailer\\PHPMailer\\' => 
         array (
@@ -35,9 +43,9 @@ class ComposerStaticInitc0cb2b6fa1e6d04e355fec91e2fda292
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc0cb2b6fa1e6d04e355fec91e2fda292::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc0cb2b6fa1e6d04e355fec91e2fda292::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInitc0cb2b6fa1e6d04e355fec91e2fda292::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit9288648fe87ea2bac0d2c26a678d31fb::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit9288648fe87ea2bac0d2c26a678d31fb::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit9288648fe87ea2bac0d2c26a678d31fb::$classMap;
 
         }, null, ClassLoader::class);
     }

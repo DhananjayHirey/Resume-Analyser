@@ -37,7 +37,7 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $database = "resume";
+    $database = "user_details";
 
     //creating a connection
     $conn = mysqli_connect($servername,$username,$password,$database);
@@ -59,12 +59,15 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
                 
             }
             if($push==true){
-                $obj = [
-                    'ref'=>$row['file_ref'],
-                    'reg'=>$row['reg_number'],
-                    'name'=>$row['full_name']
-                ];
-                array_push($finds,$obj);
+                if(strlen($row['file_ref'])>0){
+                    $obj = [
+                        'ref'=>$row['file_ref'],
+                        'reg'=>$row['reg_number'],
+                        'name'=>$row['full_name']
+                    ];
+
+                    array_push($finds,$obj);
+                }
 
             }
         }

@@ -251,8 +251,10 @@ else{
         }
 
         function man_search(){
+            htmlString = ""
             console.log('cliked')
             let search_fac = document.getElementById("man_input").value;
+            
             const xhr = new XMLHttpRequest();
             xhr.open("POST",`../php/fetch.php`,true);
             xhr.setRequestHeader("Content-Type","application/x-www-form-urlencoded");
@@ -291,7 +293,7 @@ else{
             if(document.getElementById("year3").checked){
                 year3 = document.getElementById("year3").value;
             }
-
+            
             uni = document.getElementById("uni").value;
             dept = document.getElementById("dept").value;
             const xhr = new XMLHttpRequest();

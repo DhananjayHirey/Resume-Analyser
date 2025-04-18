@@ -41,12 +41,14 @@ if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg
 
 if ($uploadOk == 0) {
   echo "<script>alert('Sorry, your file was not uploaded.')</script>";
+  exit();
 
 } else {
   if (move_uploaded_file($_FILES["file"]["tmp_name"], $target_file)) {
     echo "<script>alert('The file ". htmlspecialchars( basename( $_FILES["file"]["name"])). " has been uploaded.')</script>";
   } else {
     echo "<script>alert('Sorry, there was an error uploading your file.')</script>";
+    
   }
 }
 
@@ -61,7 +63,7 @@ $text =  (new TesseractOCR($target_file))
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "resume";
+$database = "user_details";
 
 $conn = mysqli_connect($servername,$username,$password,$database);
 $sql = "UPDATE `info` SET `file_ref` = '$target_file' WHERE `info`.`id` = $id;";
