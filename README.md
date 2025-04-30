@@ -23,14 +23,3 @@ A PHP-based web application that analyzes resume images uploaded by users, extra
 | PHPMailer     | Sending email notifications  |
 
 ---
-
-## 📁 Project Structure
-
-```plaintext
-├── uploads/                 # Uploaded resume images
-├── results/                 # Output results (optional)
-├── index.php                # Main upload UI
-├── process.php              # OCR + keyword matching
-├── mailer.php               # Email sending script
-├── assets/                  # Tailwind CSS, images
-├── README.md                # This file
